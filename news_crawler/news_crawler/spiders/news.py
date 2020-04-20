@@ -42,4 +42,4 @@ class NewsSpider(Spider):
 
         next_page_url = response.xpath('//*[contains(@class, "pager-next")]/a/@href').extract_first()
         absolute_next_page_url = response.urljoin(next_page_url)
-        yield Request(absolute_next_page_url)
+        yield Request(absolute_next_page_url, callback=self.parse_stories)
