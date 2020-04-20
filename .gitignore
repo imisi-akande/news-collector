@@ -1,0 +1,9 @@
+# virtualenv
+news_env/
+
+# Finder stuff
+.DS_Store
+
+# cache
+news_crawler/news_crawler/spiders/__pycache__/
+news_crawler/news_crawler/__pycache__/
