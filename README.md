@@ -1,4 +1,4 @@
-# Data driven insights of Seattle AirBnB listings data
+# Scraping News stories
 <p align="center">
   <img src="./images/sahara_report.png">
 </p>
