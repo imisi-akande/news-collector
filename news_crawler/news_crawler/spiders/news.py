@@ -41,7 +41,12 @@ class NewsSpider(Spider):
  
             yield Request(absolute_story_url, callback = self.parse_content,
                           meta={"category": category, "headline": headline, "release_date": release_date, "story_url": story_url})
-        
+
+        next_page_url = response.xpath('//*[contains(@class, "pager-next")]/a/@href').extract_first()
+        absolute_next_page_url = response.urljoin(next_page_url)
+        print(absolute_next_page_url, 'next page')
+        yield Request(absolute_next_page_url, callback=self.parse_stories)
+ 
     def parse_content(self, response):
 
         category = response.meta['category']
@@ -51,8 +56,11 @@ class NewsSpider(Spider):
         sub_content = response.xpath('//div[@class="story-content"]//p/text()').extract()
         content = ' '.join(sub_content)
 
+
         yield{"category": category,
               "headline": headline,
                "release_date": release_date,
                 "story_url": story_url,
                 "content": content}
+
+        
